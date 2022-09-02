@@ -19,20 +19,25 @@ public class TicTacToeRunner {
     public static void main(String[] args) {
         SpringApplication.run(TicTacToeRunner.class, args);
         TicTacToeRunner ticTacToeRunner = new TicTacToeRunner();
+
         ticTacToeRunner.play();
     }
 
     void play() {
-        while (!exit)
-        figure.chooseFigure();
-        board.showBoard();
-        System.out.println("User1: \n" +
-                "Select a field by pressing the appropriate number:");
-        user1Field = scanner.nextInt();
-        fieldSelect.selectField(user1Field, figure.getUser1Figure());
-        System.out.println("User2: \n" +
-                "Select a field by pressing the appropriate number:");
-        user2Field = scanner.nextInt();
-        fieldSelect.selectField(user2Field, figure.getUser2Figure());
+        while (!exit) {
+            figure.chooseFigure();
+
+            System.out.println(board.showBoard());
+            System.out.println("User1: \n" +
+                    "Select a field by pressing the appropriate number:");
+            user1Field = scanner.nextInt();
+            fieldSelect.selectField(user1Field, figure.getUser1Figure());
+            System.out.println(board.showBoard());
+            System.out.println("User2: \n" +
+                    "Select a field by pressing the appropriate number:");
+            user2Field = scanner.nextInt();
+            fieldSelect.selectField(user2Field, figure.getUser2Figure());
+            System.out.println(board.showBoard());
+        }
     }
 }

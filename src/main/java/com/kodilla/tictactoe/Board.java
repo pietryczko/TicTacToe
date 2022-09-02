@@ -11,12 +11,6 @@ public class Board {
     private String midBottom = "8";
     private String rightBottom = "9";
 
-    void showBoard() {
-        System.out.println("|" + leftTop + "|" + topMid + "|" + rightTop + "|\n" +
-                "|" + leftMid + "|" + mid + "|" + rightMid + "|\n" +
-                "|" + leftBottom + "|" + midBottom + "|" + rightBottom + "|");
-    }
-
     public void setLeftTop(String leftTop) {
         this.leftTop = leftTop;
     }
@@ -51,5 +45,11 @@ public class Board {
 
     public void setRightBottom(String rightBottom) {
         this.rightBottom = rightBottom;
+    }
+
+    String showBoard() {
+        return  "|" + leftTop + "|" + topMid + "|" + rightTop + "|\n" +
+                "|" + leftMid + "|" + mid + "|" + rightMid + "|\n" +
+                "|" + leftBottom + "|" + midBottom + "|" + rightBottom + "|";
     }
 }
