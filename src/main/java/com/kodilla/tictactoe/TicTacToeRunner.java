@@ -32,9 +32,19 @@ public class TicTacToeRunner {
             Comments.USER_1_FIELD_SELECT();
             user1Play();
 
+            fieldSelect.checkWinner();
+            if (fieldSelect.restartGame()){
+                return;
+            }
+
             showBoards();
             Comments.USER_2_FIELD_SELECT();
             user2Play();
+
+            fieldSelect.checkWinner();
+            if (fieldSelect.restartGame()){
+                return;
+            }
         }
     }
 
