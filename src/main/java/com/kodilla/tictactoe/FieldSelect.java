@@ -25,6 +25,21 @@ public class FieldSelect {
     }
 
     void checkWinner() {
+        if (board.getField(5).equals("X") || board.getField(5).equals("O")) {
+            if (board.getField(4) == board.getField(5) && board.getField(5) == board.getField(6)) {
+                win = true;
+                winFigure = 5;
+            } else if (board.getField(2) == board.getField(5) && board.getField(5) == board.getField(8)) {
+                win = true;
+                winFigure = 5;
+            } else if (board.getField(7) == board.getField(5) && board.getField(5) == board.getField(3)) {
+                win = true;
+                winFigure = 5;
+            } else if (board.getField(1) == board.getField(5) && board.getField(5) == board.getField(9)) {
+                win = true;
+                winFigure = 5;
+            }
+        }
         if (board.getField(1).equals("X") || board.getField(1).equals("O")) {
             if (board.getField(1) == board.getField(2) && board.getField(2) == board.getField(3)) {
                 win = true;
@@ -33,34 +48,20 @@ public class FieldSelect {
                 win = true;
                 winFigure = 1;
             }
-        } else if (board.getField(5).equals("X") || board.getField(5).equals("O"))
-        if (board.getField(4) == board.getField(5) && board.getField(5) == board.getField(6)) {
-            win = true;
-            winFigure = 5;
         }
-        if (board.getField(7) == board.getField(8) && board.getField(8) == board.getField(9)) {
-            win = true;
-            winFigure = 7;
-        }
-        if
-        if (board.getField(2) == board.getField(5) && board.getField(5) == board.getField(8)) {
-            win = true;
-            winFigure = 5;
-        }
-        if (board.getField(3) == board.getField(6) && board.getField(6) == board.getField(9)) {
-            win = true;
-            winFigure = 3;
-        }
-        if (board.getField(1) == board.getField(5) && board.getField(5) == board.getField(9)) {
-            win = true;
-            winFigure = 5;
-        }
-        if (board.getField(7) == board.getField(5) && board.getField(5) == board.getField(3)) {
-            win = true;
-            winFigure = 5;
+        if ((board.getField(9).equals("X") || board.getField(9).equals("O"))) {
+            if (board.getField(3) == board.getField(6) && board.getField(6) == board.getField(9)) {
+                win = true;
+                winFigure = 3;
+            }
+            if (board.getField(7) == board.getField(8) && board.getField(8) == board.getField(9)) {
+                win = true;
+                winFigure = 7;
+            }
         }
 
         if (win) {
+            System.out.println(showGameBoard());
             System.out.println(board.getField(winFigure) + " won!");
             restart = true;
         }
