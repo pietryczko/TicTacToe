@@ -113,9 +113,9 @@ public class TicTacToeRunner {
     void computerPlay() {
         error = false;
         do {
-            random.nextInt(9 + 1);
+            int move = random.nextInt(9 + 1);
             try {
-                fieldSelect.selectField(user2Field, figure.getUser2Figure());
+                fieldSelect.selectField(move, figure.getUser2Figure());
                 error = false;
             } catch (OccupiedFieldException e) {
                 error = true;
