@@ -10,14 +10,11 @@ import java.util.Scanner;
 public class TicTacToeRunner {
     private boolean exit = false;
     private boolean error;
-    private int game;
-    private int user1Field;
-    private int user2Field;
     private final Scanner scanner = new Scanner(System.in);
-    private Random random = new Random();
-    private FieldSelect fieldSelect = new FieldSelect();
-    private Figure figure = new Figure();
-    private Board board = new Board();
+    private final Random random = new Random();
+    private final FieldOperator fieldOperator = new FieldOperator();
+    private final Figure figure = new Figure();
+    private final Board board = new Board();
 
     public static void main(String[] args) {
         SpringApplication.run(TicTacToeRunner.class, args);
@@ -27,7 +24,7 @@ public class TicTacToeRunner {
 
     void start() {
         System.out.println("Choose your game:\n 1.Player vs Computer\n 2.Player vs Player");
-        game = scanner.nextInt();
+        int game = scanner.nextInt();
         if (game == 1) {
             playUserVsComputer();
         } else if (game == 2) {
@@ -42,17 +39,17 @@ public class TicTacToeRunner {
             showBoards();
             Comments.USER_1_FIELD_SELECT();
             user1Play();
-            fieldSelect.checkWinner();
-            if (fieldSelect.restartGame()) {
-                return;
+            fieldOperator.checkWinner();
+            if (fieldOperator.restartGame()) {
+                exit = true;
             }
 
             showBoards();
             Comments.USER_2_FIELD_SELECT();
             user2Play();
-            fieldSelect.checkWinner();
-            if (fieldSelect.restartGame()) {
-                return;
+            fieldOperator.checkWinner();
+            if (fieldOperator.restartGame()) {
+                exit = true;
             }
         }
     }
@@ -64,30 +61,26 @@ public class TicTacToeRunner {
             showBoards();
             Comments.USER_1_FIELD_SELECT();
             user1Play();
-            fieldSelect.checkWinner();
-            if (fieldSelect.restartGame()) {
+            fieldOperator.checkWinner();
+            if (fieldOperator.restartGame()) {
                 return;
             }
 
             computerPlay();
-            System.out.println(fieldSelect.showGameBoard());
-            fieldSelect.checkWinner();
-            if (fieldSelect.restartGame()) {
+            System.out.println(fieldOperator.showGameBoard());
+            fieldOperator.checkWinner();
+            if (fieldOperator.restartGame()) {
                 return;
             }
         }
     }
 
-    void showBoards() {
-        System.out.println("Field numbers:\n" + board.showBoardPattern() + "\n\nCurrent Game:\n" + fieldSelect.showGameBoard());
-    }
-
     void user1Play() {
         error = false;
         do {
-            user1Field = scanner.nextInt();
+            int user1Field = scanner.nextInt();
             try {
-                fieldSelect.selectField(user1Field, figure.getUser1Figure());
+                fieldOperator.selectField(user1Field, figure.getUser1Figure());
                 error = false;
             } catch (OccupiedFieldException e) {
                 System.out.println("Field is occupied, try another one");
@@ -99,9 +92,9 @@ public class TicTacToeRunner {
     void user2Play() {
         error = false;
         do {
-            user2Field = scanner.nextInt();
+            int user2Field = scanner.nextInt();
             try {
-                fieldSelect.selectField(user2Field, figure.getUser2Figure());
+                fieldOperator.selectField(user2Field, figure.getUser2Figure());
                 error = false;
             } catch (OccupiedFieldException e) {
                 System.out.println("Field is occupied, try another one");
@@ -113,13 +106,19 @@ public class TicTacToeRunner {
     void computerPlay() {
         error = false;
         do {
-            int move = random.nextInt(9 + 1);
-            try {
-                fieldSelect.selectField(move, figure.getUser2Figure());
+            int move = random.nextInt(9+1);
+            if (fieldOperator.fieldIsEmpty(move)) {
+                fieldOperator.computerMove(move, figure.getUser2Figure());
                 error = false;
-            } catch (OccupiedFieldException e) {
+                System.out.println("Good");
+            } else {
                 error = true;
+                System.out.println("ERROR");
             }
         } while (error);
+    }
+
+    void showBoards() {
+        System.out.println("Field numbers:\n" + board.showBoardPattern() + "\n\nCurrent Game:\n" + fieldOperator.showGameBoard());
     }
 }
