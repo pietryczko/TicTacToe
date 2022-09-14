@@ -18,7 +18,7 @@ public class TicTacToeRunner {
     private int column;
     private final Scanner scanner = new Scanner(System.in);
     private Random random = new Random();
-    private FieldSelect fieldSelect = new FieldSelect();
+    private FieldOperator fieldOperator = new FieldOperator();
     private Figure figure = new Figure();
     private Board board = new Board();
     private BoardOperator boardOperator = new BoardOperator();
@@ -67,16 +67,16 @@ public class TicTacToeRunner {
             showBoards();
             Comments.USER_1_FIELD_SELECT();
             user1PlaySmall();
-            fieldSelect.checkWinner();
-            if (fieldSelect.restartGame()) {
+            fieldOperator.checkWinner();
+            if (fieldOperator.restartGame()) {
                 exit = true;
             }
 
             showBoards();
             Comments.USER_2_FIELD_SELECT();
             user2PlaySmall();
-            fieldSelect.checkWinner();
-            if (fieldSelect.restartGame()) {
+            fieldOperator.checkWinner();
+            if (fieldOperator.restartGame()) {
                 exit = true;
             }
         }
@@ -89,22 +89,22 @@ public class TicTacToeRunner {
             showBoards();
             Comments.USER_1_FIELD_SELECT();
             user1PlaySmall();
-            fieldSelect.checkWinner();
-            if (fieldSelect.restartGame()) {
+            fieldOperator.checkWinner();
+            if (fieldOperator.restartGame()) {
                 return;
             }
 
             computerPlaySmall();
-            System.out.println(fieldSelect.showGameBoard());
-            fieldSelect.checkWinner();
-            if (fieldSelect.restartGame()) {
+            System.out.println(fieldOperator.showGameBoard());
+            fieldOperator.checkWinner();
+            if (fieldOperator.restartGame()) {
                 return;
             }
         }
     }
 
     void showBoards() {
-        System.out.println("Field numbers:\n" + board.showBoardPattern() + "\n\nCurrent Game:\n" + fieldSelect.showGameBoard());
+        System.out.println("Field numbers:\n" + board.showBoardPattern() + "\n\nCurrent Game:\n" + fieldOperator.showGameBoard());
     }
 
     void user1PlayLarge() {
@@ -146,7 +146,7 @@ public class TicTacToeRunner {
         do {
             user1Field = scanner.nextInt();
             try {
-                fieldSelect.selectField(user1Field, figure.getUser1Figure());
+                fieldOperator.selectField(user1Field, figure.getUser1Figure());
                 error = false;
             } catch (OccupiedFieldException e) {
                 System.out.println("Field is occupied, try another one");
@@ -160,7 +160,7 @@ public class TicTacToeRunner {
         do {
             user2Field = scanner.nextInt();
             try {
-                fieldSelect.selectField(user2Field, figure.getUser2Figure());
+                fieldOperator.selectField(user2Field, figure.getUser2Figure());
                 error = false;
             } catch (OccupiedFieldException e) {
                 System.out.println("Field is occupied, try another one");
@@ -174,7 +174,7 @@ public class TicTacToeRunner {
         do {
             random.nextInt(9 + 1);
             try {
-                fieldSelect.selectField(user2Field, figure.getUser2Figure());
+                fieldOperator.selectField(user2Field, figure.getUser2Figure());
                 error = false;
             } catch (OccupiedFieldException e) {
                 error = true;
