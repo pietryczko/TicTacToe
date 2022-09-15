@@ -1,4 +1,4 @@
 package com.kodilla.tictactoe;
 
-public class OccupiedFieldException extends Exception{
+public class OccupiedFieldException extends RuntimeException{
 }

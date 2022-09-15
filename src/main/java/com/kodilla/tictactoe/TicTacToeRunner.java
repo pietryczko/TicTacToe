@@ -170,15 +170,10 @@ public class TicTacToeRunner {
     }
 
     void computerPlaySmall() {
-        error = false;
-        do {
-            random.nextInt(9 + 1);
-            try {
-                fieldOperator.selectField(user2Field, figure.getUser2Figure());
-                error = false;
-            } catch (OccupiedFieldException e) {
-                error = true;
-            }
-        } while (error);
+        int move;
+            do {
+                move = random.nextInt(9 + 1);
+            } while (!fieldOperator.fieldIsEmpty(move));
+        fieldOperator.selectField(move, figure.getUser2Figure());
+        }
     }
-}

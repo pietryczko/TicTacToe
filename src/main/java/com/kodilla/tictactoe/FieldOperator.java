@@ -8,7 +8,7 @@ public class FieldOperator {
     private boolean restart = false;
     private int winFigure;
 
-    void selectField(int fieldNumber, String figure) throws OccupiedFieldException {
+    void selectField(int fieldNumber, String figure) {
         if (board.getField(fieldNumber).equals("X") || board.getField(fieldNumber).equals("O")) {
             throw new OccupiedFieldException();
         } else {
@@ -25,7 +25,7 @@ public class FieldOperator {
     }
 
     void checkWinner() {
-        if (board.getField(5).equals("X") || board.getField(5).equals("O")) {
+        if (!board.getField(5).isBlank()) {
             if (Objects.equals(board.getField(4), board.getField(5)) && Objects.equals(board.getField(5), board.getField(6))) {
                 win = true;
                 winFigure = 5;
