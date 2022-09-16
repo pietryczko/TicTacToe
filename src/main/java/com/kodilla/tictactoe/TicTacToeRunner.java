@@ -14,14 +14,12 @@ public class TicTacToeRunner {
     private int gameMode;
     private int user1Field;
     private int user2Field;
-    private int row;
-    private int column;
     private final Scanner scanner = new Scanner(System.in);
     private Random random = new Random();
     private FieldOperator fieldOperator = new FieldOperator();
     private Figure figure = new Figure();
     private Board board = new Board();
-    private BoardOperator boardOperator = new BoardOperator();
+    private LargeBoardOperator boardOperator = new LargeBoardOperator();
 
     public static void main(String[] args) {
         SpringApplication.run(TicTacToeRunner.class, args);
@@ -44,9 +42,9 @@ public class TicTacToeRunner {
         figure.chooseFigure();
         while (!exit) {
             boardOperator.showBoard();
-            user1PlayLarge();
+            boardOperator.chooseField(figure.getUser1Figure());
             boardOperator.showBoard();
-            user2PlayLarge();
+            boardOperator.chooseField(figure.getUser2Figure());
         }
     }
 
@@ -105,40 +103,6 @@ public class TicTacToeRunner {
 
     void showBoards() {
         System.out.println("Field numbers:\n" + board.showBoardPattern() + "\n\nCurrent Game:\n" + fieldOperator.showGameBoard());
-    }
-
-    void user1PlayLarge() {
-        error = false;
-        do {
-            System.out.println("Select row");
-            row = scanner.nextInt() - 1;
-            System.out.println("Select column");
-            column = scanner.nextInt() - 1;
-            if (boardOperator.getField(row, column).equals("-")) {
-                boardOperator.changeField(row, column, figure.getUser1Figure());
-                error = false;
-            } else {
-                System.out.println("Field is occupied, try other");
-                error = true;
-            }
-        } while (error);
-    }
-
-    void user2PlayLarge() {
-        error = false;
-        do {
-            System.out.println("Select row");
-            row = scanner.nextInt() - 1;
-            System.out.println("Select column");
-            column = scanner.nextInt() - 1;
-            if (boardOperator.getField(row, column).equals("-")) {
-                boardOperator.changeField(row, column, figure.getUser2Figure());
-                error = false;
-            } else {
-                System.out.println("Field is occupied, try other");
-                error = true;
-            }
-        } while (error);
     }
 
     void user1PlaySmall() {
