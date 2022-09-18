@@ -19,7 +19,7 @@ public class TicTacToeRunner {
     private FieldOperator fieldOperator = new FieldOperator();
     private Figure figure = new Figure();
     private Board board = new Board();
-    private LargeBoardOperator boardOperator = new LargeBoardOperator();
+    private LargeBoardOperator largeBoardOperator = new LargeBoardOperator();
 
     public static void main(String[] args) {
         SpringApplication.run(TicTacToeRunner.class, args);
@@ -38,13 +38,13 @@ public class TicTacToeRunner {
     }
 
     void startLarge() {
-        boardOperator.createBoard();
+        largeBoardOperator.createBoard();
         figure.chooseFigure();
         while (!exit) {
-            boardOperator.showBoard();
-            boardOperator.chooseField(figure.getUser1Figure());
-            boardOperator.showBoard();
-            boardOperator.chooseField(figure.getUser2Figure());
+            largeBoardOperator.showBoard();
+            largeBoardOperator.chooseField(figure.getUser1Figure());
+            largeBoardOperator.showBoard();
+            largeBoardOperator.chooseField(figure.getUser2Figure());
         }
     }
 

@@ -55,12 +55,108 @@ public class LargeBoardOperator {
         checkWinner(row, column, figure);
     }
 
+    void checkWinner(int row, int column, String figure) {
+        int x = 0;
+        int y = 0;
+        //check down
+        for (int i = row; i < 10; i++) {
+            if (board[i][column].equals(figure)) {
+                x++;
+            } else if (!board[i][column].equals(figure)) {
+                break;
+            }
+        }
 
-    String getField(int row, int column) {
-        return board[row][column];
+        if (x > 0) {
+            x--;
+        }
+        for (int i = row; i > 0; i--) {
+
+            if (board[i][column].equals(figure)) {
+                x++;
+            } else if (!board[i][column].equals(figure)) {
+                break;
+            }
+        }
+
+
+        for (int i = column; i < 10; i++) {
+            if (board[row][i].equals(figure)) {
+                y++;
+            } else if (!board[row][i].equals(figure)) {
+                break;
+            }
+        }
+
+        if (y > 0) {
+            y--;
+        }
+        for (int i = column; i > 0; i--) {
+            if (board[row][i].equals(figure)) {
+                y++;
+            } else if (!board[row][i].equals(figure)) {
+                break;
+            }
+        }
+
+        int xy1 = 0;
+        int xy2 = 0;
+        for (int i = 0; i < 10; i++) {
+            row++;
+            column++;
+            if (!(row > 9) && !(column > 9)) {
+                if (board[row][column].equals(figure)) {
+                    xy1++;
+                }
+            } else {
+                break;
+            }
+            System.out.println(xy1);
+        }
+        for (int i = row; i < 10; i++) {
+            for (int j = column; j < 10; j++) {
+                if (board[i][j].equals(figure)) {
+                    xy1++;
+                } else if (!board[i][j].equals(figure)) {
+                    break;
+                }
+            }
+            for (int j = column; j < 0; j--) {
+                if (board[i][j].equals(figure)) {
+                    xy2++;
+                } else if (!board[i][j].equals(figure)) {
+                    break;
+                }
+            }
+        }
+
+        if (y > 0) {
+            xy1--;
+        }
+        if (y > 0) {
+            xy2--;
+        }
+        for (int i = row; i < 0; i--) {
+            for (int j = column; j < 10; j++) {
+                if (board[i][j].equals(figure)) {
+                    xy1++;
+                } else if (!board[i][j].equals(figure)) {
+                    break;
+                }
+            }
+            for (int j = column; j < 0; j--) {
+                if (board[i][j].equals(figure)) {
+                    xy2++;
+                } else if (!board[i][j].equals(figure)) {
+                    break;
+                }
+            }
+
+        }
+
+        if (x == 5 || y == 5 || xy1 == 5 || xy2 == 5) {
+            System.out.println("WIN");
+            System.exit(0);
+        }
     }
 }
-/* else if (!getField(i, column).equals(figure)){
-         return;
-         }*/
-
