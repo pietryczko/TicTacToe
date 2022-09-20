@@ -66,7 +66,7 @@ public class LargeBoardOperator {
                 break;
             }
         }
-
+        //check up
         if (x > 0) {
             x--;
         }
@@ -79,7 +79,7 @@ public class LargeBoardOperator {
             }
         }
 
-
+        //check left
         for (int i = column; i < 10; i++) {
             if (board[row][i].equals(figure)) {
                 y++;
@@ -88,6 +88,7 @@ public class LargeBoardOperator {
             }
         }
 
+        //check right
         if (y > 0) {
             y--;
         }
@@ -101,57 +102,64 @@ public class LargeBoardOperator {
 
         int xy1 = 0;
         int xy2 = 0;
+        int a = row;
+        int b = column;
         for (int i = 0; i < 10; i++) {
-            row++;
-            column++;
-            if (!(row > 9) && !(column > 9)) {
-                if (board[row][column].equals(figure)) {
+            a++;
+            b++;
+            if (!(a > 9) && !(b > 9)) {
+                if (board[a][b].equals(figure)) {
                     xy1++;
                 }
             } else {
                 break;
             }
-            System.out.println(xy1);
-        }
-        for (int i = row; i < 10; i++) {
-            for (int j = column; j < 10; j++) {
-                if (board[i][j].equals(figure)) {
-                    xy1++;
-                } else if (!board[i][j].equals(figure)) {
-                    break;
-                }
-            }
-            for (int j = column; j < 0; j--) {
-                if (board[i][j].equals(figure)) {
-                    xy2++;
-                } else if (!board[i][j].equals(figure)) {
-                    break;
-                }
-            }
+            System.out.println("xy1:" + xy1);
         }
 
-        if (y > 0) {
-            xy1--;
-        }
-        if (y > 0) {
-            xy2--;
-        }
-        for (int i = row; i < 0; i--) {
-            for (int j = column; j < 10; j++) {
-                if (board[i][j].equals(figure)) {
+        a = row;
+        b = column;
+        for (int i = 0; i < 10; i++) {
+            a--;
+            b--;
+            if ((a >= 0) && (b >= 0)) {
+                if (board[a][b].equals(figure)) {
                     xy1++;
-                } else if (!board[i][j].equals(figure)) {
-                    break;
                 }
+            } else {
+                break;
             }
-            for (int j = column; j < 0; j--) {
-                if (board[i][j].equals(figure)) {
-                    xy2++;
-                } else if (!board[i][j].equals(figure)) {
-                    break;
-                }
-            }
+            System.out.println("xy1:" + xy1);
+        }
 
+        a = row;
+        b = column;
+        for (int i = 0; i < 10; i++) {
+            a--;
+            b++;
+            if ((a >= 0) && !(b > 9)) {
+                if (board[a][b].equals(figure)) {
+                    xy2++;
+                }
+            } else {
+                break;
+            }
+            System.out.println("xy2:" + xy2);
+        }
+
+        a = row;
+        b = column;
+        for (int i = 0; i < 10; i++) {
+            a++;
+            b--;
+            if (!(a > 9) && (b >= 0)) {
+                if (board[a][b].equals(figure)) {
+                    xy2++;
+                }
+            } else {
+                break;
+            }
+            System.out.println("xy2:" + xy2);
         }
 
         if (x == 5 || y == 5 || xy1 == 5 || xy2 == 5) {
