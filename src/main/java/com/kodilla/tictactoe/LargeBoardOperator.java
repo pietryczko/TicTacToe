@@ -16,14 +16,9 @@ public class LargeBoardOperator {
         board[1][1] = "X";
         board[2][2] = "X";
 
-        board[2][4] = "X";
-        board[1][5] = "X";
-
-        board[4][2] = "X";
-        board[5][1] = "X";
-
         board[4][4] = "X";
-        board[5][5] = "X";
+        board[5][5] = "O";
+        board[6][6] = "X";
 
     }
 
@@ -71,11 +66,10 @@ public class LargeBoardOperator {
             x--;
         }
         for (int i = row; i > 0; i--) {
-
             if (board[i][column].equals(figure)) {
                 x++;
             } else if (!board[i][column].equals(figure)) {
-                break;
+                continue;
             }
         }
 
@@ -84,7 +78,7 @@ public class LargeBoardOperator {
             if (board[row][i].equals(figure)) {
                 y++;
             } else if (!board[row][i].equals(figure)) {
-                break;
+                continue;
             }
         }
 
@@ -96,7 +90,7 @@ public class LargeBoardOperator {
             if (board[row][i].equals(figure)) {
                 y++;
             } else if (!board[row][i].equals(figure)) {
-                break;
+                continue;
             }
         }
 
@@ -112,7 +106,7 @@ public class LargeBoardOperator {
                     xy1++;
                 }
             } else {
-                break;
+                continue;
             }
             System.out.println("xy1:" + xy1);
         }
@@ -127,7 +121,7 @@ public class LargeBoardOperator {
                     xy1++;
                 }
             } else {
-                break;
+                continue;
             }
             System.out.println("xy1:" + xy1);
         }
@@ -142,7 +136,7 @@ public class LargeBoardOperator {
                     xy2++;
                 }
             } else {
-                break;
+                continue;
             }
             System.out.println("xy2:" + xy2);
         }
@@ -157,7 +151,7 @@ public class LargeBoardOperator {
                     xy2++;
                 }
             } else {
-                break;
+                continue;
             }
             System.out.println("xy2:" + xy2);
         }
