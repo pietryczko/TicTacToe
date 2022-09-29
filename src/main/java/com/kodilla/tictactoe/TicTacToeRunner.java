@@ -8,18 +8,9 @@ import java.util.Scanner;
 
 @SpringBootApplication
 public class TicTacToeRunner {
-    private boolean exit = false;
-    private boolean error;
-    private int game;
-    private int gameMode;
-    private int user1Field;
-    private int user2Field;
     private final Scanner scanner = new Scanner(System.in);
-    private Random random = new Random();
-    private FieldOperator fieldOperator = new FieldOperator();
-    private Figure figure = new Figure();
-    private Board board = new Board();
-    private LargeBoardOperator largeBoardOperator = new LargeBoardOperator();
+    private LargeBoardOperator large = new LargeBoardOperator();
+    private ThreeByThreeOP small = new ThreeByThreeOP();
 
     public static void main(String[] args) {
         SpringApplication.run(TicTacToeRunner.class, args);
@@ -29,115 +20,20 @@ public class TicTacToeRunner {
 
     void startGame() {
         System.out.println("Press 1 to play small Tic Tac Toe\nPress 2 to play large Tic Tac Toe");
-        gameMode = scanner.nextInt();
+        int gameMode = scanner.nextInt();
+
         if (gameMode == 1) {
-            startSmall();
+            small.startSmall();
         } else if (gameMode == 2) {
-            startLarge();
+            large.startLarge();
         }
-    }
 
-    void startLarge() {
-        largeBoardOperator.createBoard();
-        figure.chooseFigure();
-        while (!exit) {
-            largeBoardOperator.showBoard();
-            largeBoardOperator.chooseField(figure.getUser1Figure());
-            largeBoardOperator.showBoard();
-            largeBoardOperator.chooseField(figure.getUser2Figure());
+        System.out.println("Do you want play again? y/n");
+        if (scanner.next().equals("y")) {
+            startGame();
+        } else {
+            System.exit(0);
         }
+
     }
-
-    void startSmall() {
-        System.out.println("Choose your game:\n 1.Player vs Computer\n 2.Player vs Player");
-        game = scanner.nextInt();
-        if (game == 1) {
-            playUserVsComputerSmall();
-        } else if (game == 2) {
-            playUserVsUserSmall();
-        }
-    }
-
-    void playUserVsUserSmall() {
-        figure.chooseFigure();
-        while (!exit) {
-
-            showBoards();
-            Comments.USER_1_FIELD_SELECT();
-            user1PlaySmall();
-            fieldOperator.checkWinner();
-            if (fieldOperator.restartGame()) {
-                exit = true;
-            }
-
-            showBoards();
-            Comments.USER_2_FIELD_SELECT();
-            user2PlaySmall();
-            fieldOperator.checkWinner();
-            if (fieldOperator.restartGame()) {
-                exit = true;
-            }
-        }
-    }
-
-    void playUserVsComputerSmall() {
-        figure.chooseFigure();
-        while (!exit) {
-
-            showBoards();
-            Comments.USER_1_FIELD_SELECT();
-            user1PlaySmall();
-            fieldOperator.checkWinner();
-            if (fieldOperator.restartGame()) {
-                return;
-            }
-
-            computerPlaySmall();
-            System.out.println(fieldOperator.showGameBoard());
-            fieldOperator.checkWinner();
-            if (fieldOperator.restartGame()) {
-                return;
-            }
-        }
-    }
-
-    void showBoards() {
-        System.out.println("Field numbers:\n" + board.showBoardPattern() + "\n\nCurrent Game:\n" + fieldOperator.showGameBoard());
-    }
-
-    void user1PlaySmall() {
-        error = false;
-        do {
-            user1Field = scanner.nextInt();
-            try {
-                fieldOperator.selectField(user1Field, figure.getUser1Figure());
-                error = false;
-            } catch (OccupiedFieldException e) {
-                System.out.println("Field is occupied, try another one");
-                error = true;
-            }
-        } while (error);
-    }
-
-    void user2PlaySmall() {
-        error = false;
-        do {
-            user2Field = scanner.nextInt();
-            try {
-                fieldOperator.selectField(user2Field, figure.getUser2Figure());
-                error = false;
-            } catch (OccupiedFieldException e) {
-                System.out.println("Field is occupied, try another one");
-                error = true;
-            }
-        } while (error);
-    }
-
-    void computerPlaySmall() {
-        int move;
-            do {
-                move = random.nextInt(9 + 1);
-            } while (!fieldOperator.fieldIsEmpty(move));
-        fieldOperator.selectField(move, figure.getUser2Figure());
-        }
-    }
+}

@@ -5,7 +5,6 @@ import java.util.Objects;
 public class FieldOperator {
     private final Board board = new Board();
     private boolean win = false;
-    private boolean restart = false;
     private int winFigure;
 
     void selectField(int fieldNumber, String figure) {
@@ -14,10 +13,6 @@ public class FieldOperator {
         } else {
             fieldSelector(fieldNumber, figure);
         }
-    }
-
-    void computerMove(int fieldNumber, String figure) {
-        fieldSelector(fieldNumber, figure);
     }
 
     boolean fieldIsEmpty(int move) {
@@ -94,11 +89,18 @@ public class FieldOperator {
         }
     }
 
+    void clearBoard() {
+        for (int i = 0; i < 10; i++) {
+            fieldSelector(i, " ");
+        }
+        win = false;
+    }
+
     String showGameBoard() {
         return board.showGameBoard();
     }
 
-    boolean restartGame() {
+    boolean isWin() {
         return win;
     }
 }
