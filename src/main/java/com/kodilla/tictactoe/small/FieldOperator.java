@@ -1,4 +1,4 @@
-package com.kodilla.tictactoe;
+package com.kodilla.tictactoe.small;
 
 import java.util.Objects;
 

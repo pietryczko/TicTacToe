@@ -1,4 +1,4 @@
-package com.kodilla.tictactoe;
+package com.kodilla.tictactoe.small;
 
 public class Comments {
     static void USER_1_FIELD_SELECT() {

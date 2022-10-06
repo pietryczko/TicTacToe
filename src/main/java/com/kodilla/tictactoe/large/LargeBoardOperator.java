@@ -1,4 +1,6 @@
-package com.kodilla.tictactoe;
+package com.kodilla.tictactoe.large;
+
+import com.kodilla.tictactoe.Figure;
 
 import java.util.Scanner;
 
@@ -16,11 +18,6 @@ public class LargeBoardOperator {
                 board[i][j] = "-";
             }
         }
-
-        board[0][0] = "X";
-        board[1][0] = "X";
-        board[2][0] = "X";
-        board[3][0] = "X";
     }
 
     private void showBoard() {
@@ -57,7 +54,8 @@ public class LargeBoardOperator {
     private boolean isWin() {
         return win;
     }
-    void startLarge() {
+
+    public void startLarge() {
         boolean exit = false;
         createBoard();
         figure.chooseFigure();

@@ -1,6 +1,4 @@
-package com.kodilla.tictactoe;
-
-import org.apache.tomcat.util.bcel.classfile.ArrayElementValue;
+package com.kodilla.tictactoe.large;
 
 public class LargeWinChecker {
     private int row;
@@ -15,10 +13,10 @@ public class LargeWinChecker {
         this.figure = figure;
         this.board = board;
         checkVertical();
-        if (win == false) {
+        if (!win) {
             checkHorizontal();
         }
-        if (win == false) {
+        if (!win) {
             checkCross();
         }
         return win;
@@ -29,15 +27,11 @@ public class LargeWinChecker {
         for (int i = row; i < 10; i++) {
             if (board[i][column].equals(figure)) {
                 x++;
-            } else {
-                continue;
             }
         }
         for (int i = row; i > 0; i--) {
             if (board[i][column].equals(figure)) {
                 x++;
-            } else {
-                continue;
             }
         }
         if (x >= 5) {
@@ -51,8 +45,6 @@ public class LargeWinChecker {
         for (int i = column; i < 10; i++) {
             if (board[row][i].equals(figure)) {
                 y++;
-            } else if (!board[row][i].equals(figure)) {
-                continue;
             }
         }
 
@@ -60,8 +52,6 @@ public class LargeWinChecker {
         for (int i = column; i > 0; i--) {
             if (board[row][i].equals(figure)) {
                 y++;
-            } else if (!board[row][i].equals(figure)) {
-                continue;
             }
         }
 
@@ -75,6 +65,7 @@ public class LargeWinChecker {
         int xy2 = 0;
         int a = row;
         int b = column;
+
         for (int i = 0; i < 10; i++) {
             a++;
             b++;
@@ -82,8 +73,6 @@ public class LargeWinChecker {
                 if (board[a][b].equals(figure)) {
                     xy1++;
                 }
-            } else {
-                continue;
             }
         }
 
@@ -96,8 +85,6 @@ public class LargeWinChecker {
                 if (board[a][b].equals(figure)) {
                     xy1++;
                 }
-            } else {
-                continue;
             }
         }
 
@@ -110,8 +97,6 @@ public class LargeWinChecker {
                 if (board[a][b].equals(figure)) {
                     xy2++;
                 }
-            } else {
-                continue;
             }
         }
 
@@ -124,8 +109,6 @@ public class LargeWinChecker {
                 if (board[a][b].equals(figure)) {
                     xy2++;
                 }
-            } else {
-                continue;
             }
         }
 

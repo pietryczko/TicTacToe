@@ -1,4 +1,4 @@
-package com.kodilla.tictactoe;
+package com.kodilla.tictactoe.small;
 
 public class Board {
     private String leftTop = " ";

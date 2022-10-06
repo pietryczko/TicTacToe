@@ -1,4 +1,7 @@
-package com.kodilla.tictactoe;
+package com.kodilla.tictactoe.small;
+
+import com.kodilla.tictactoe.Figure;
+import com.kodilla.tictactoe.large.LargeBoardOperator;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -11,7 +14,7 @@ public class ThreeByThreeOP {
     private Board board = new Board();
     private LargeBoardOperator largeBoardOperator = new LargeBoardOperator();
 
-    void startSmall() {
+    public void startSmall() {
         fieldOperator.clearBoard();
         System.out.println("Choose your game:\n 1.Player vs Computer\n 2.Player vs Player");
         int game = scanner.nextInt();

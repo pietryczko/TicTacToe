@@ -7,7 +7,7 @@ public class Figure {
     private String user1Figure;
     private String user2Figure;
 
-    void chooseFigure() {
+    public void chooseFigure() {
         System.out.println("User 1:" +
                 "Choose your figure -> X | O \n Press x to X / Press o to O");
         String user1Choose = scanner.next();
@@ -23,11 +23,11 @@ public class Figure {
         System.out.println("User 2 figure is: " + user2Figure);
     }
 
-    String getUser1Figure() {
+    public String getUser1Figure() {
         return user1Figure;
     }
 
-    String getUser2Figure() {
+    public String getUser2Figure() {
         return user2Figure;
     }
 }
