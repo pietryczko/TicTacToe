@@ -1,18 +1,16 @@
 package com.kodilla.tictactoe.small;
 
 import com.kodilla.tictactoe.Figure;
-import com.kodilla.tictactoe.large.LargeBoardOperator;
 
 import java.util.Random;
 import java.util.Scanner;
 
 public class ThreeByThreeOP {
     private final Scanner scanner = new Scanner(System.in);
-    private Random random = new Random();
-    private FieldOperator fieldOperator = new FieldOperator();
-    private Figure figure = new Figure();
-    private Board board = new Board();
-    private LargeBoardOperator largeBoardOperator = new LargeBoardOperator();
+    private final Random random = new Random();
+    private final FieldOperator fieldOperator = new FieldOperator();
+    private final Figure figure = new Figure();
+    private final Board board = new Board();
 
     public void startSmall() {
         fieldOperator.clearBoard();
@@ -75,7 +73,7 @@ public class ThreeByThreeOP {
     }
 
     private void user1PlaySmall() {
-        boolean error = false;
+        boolean error;
         do {
             int user1Field = scanner.nextInt();
             try {
@@ -89,7 +87,7 @@ public class ThreeByThreeOP {
     }
 
     private void user2PlaySmall() {
-        boolean error = false;
+        boolean error;
         do {
             int user2Field = scanner.nextInt();
             try {

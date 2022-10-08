@@ -8,8 +8,8 @@ import java.util.Scanner;
 public class GameProcessor {
 
     private final Scanner scanner = new Scanner(System.in);
-    private LargeBoardOperator large = new LargeBoardOperator();
-    private ThreeByThreeOP small = new ThreeByThreeOP();
+    private final LargeBoardOperator large = new LargeBoardOperator();
+    private final ThreeByThreeOP small = new ThreeByThreeOP();
 
     void startGame() {
         System.out.println("Press 1 to play small Tic Tac Toe\nPress 2 to play large Tic Tac Toe");

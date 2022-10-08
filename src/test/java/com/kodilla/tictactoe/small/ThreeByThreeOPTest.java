@@ -4,14 +4,14 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ThreeByThreeOPTest {
-    private FieldOperator fieldOperator = new FieldOperator();
+    private final FieldOperator fieldOperator = new FieldOperator();
 
     @Nested
-    @DisplayName("Test all variants with O")
-    class testOVariants {
+    @DisplayName("Test all horizontal and vertical variants with O")
+    class TestOVariants {
         @Test
         void testLeftVerticalO() {
             //Given
@@ -24,7 +24,7 @@ class ThreeByThreeOPTest {
             boolean result = fieldOperator.isWin();
 
             //Then
-            assertEquals(true, result);
+            assertTrue(result);
         }
 
         @Test
@@ -39,7 +39,7 @@ class ThreeByThreeOPTest {
             boolean result = fieldOperator.isWin();
 
             //Then
-            assertEquals(true, result);
+            assertTrue(result);
         }
 
         @Test
@@ -54,7 +54,7 @@ class ThreeByThreeOPTest {
             boolean result = fieldOperator.isWin();
 
             //Then
-            assertEquals(true, result);
+            assertTrue(result);
         }
 
         @Test
@@ -69,7 +69,7 @@ class ThreeByThreeOPTest {
             boolean result = fieldOperator.isWin();
 
             //Then
-            assertEquals(true, result);
+            assertTrue(result);
         }
 
         @Test
@@ -84,7 +84,7 @@ class ThreeByThreeOPTest {
             boolean result = fieldOperator.isWin();
 
             //Then
-            assertEquals(true, result);
+            assertTrue(result);
         }
 
         @Test
@@ -99,13 +99,13 @@ class ThreeByThreeOPTest {
             boolean result = fieldOperator.isWin();
 
             //Then
-            assertEquals(true, result);
+            assertTrue(result);
         }
     }
 
     @Nested
-    @DisplayName("Test all variants with X")
-    class testXVariants {
+    @DisplayName("Test horizontal and vertical variants with X")
+    class TestXVariants {
         @Test
         void testLeftVerticalX() {
             //Given
@@ -118,7 +118,7 @@ class ThreeByThreeOPTest {
             boolean result = fieldOperator.isWin();
 
             //Then
-            assertEquals(true, result);
+            assertTrue(result);
         }
 
         @Test
@@ -133,7 +133,8 @@ class ThreeByThreeOPTest {
             boolean result = fieldOperator.isWin();
 
             //Then
-            assertEquals(true, result);
+
+            assertTrue(result);
         }
 
         @Test
@@ -148,7 +149,7 @@ class ThreeByThreeOPTest {
             boolean result = fieldOperator.isWin();
 
             //Then
-            assertEquals(true, result);
+            assertTrue(result);
         }
 
         @Test
@@ -163,7 +164,7 @@ class ThreeByThreeOPTest {
             boolean result = fieldOperator.isWin();
 
             //Then
-            assertEquals(true, result);
+            assertTrue(result);
         }
 
         @Test
@@ -178,7 +179,7 @@ class ThreeByThreeOPTest {
             boolean result = fieldOperator.isWin();
 
             //Then
-            assertEquals(true, result);
+            assertTrue(result);
         }
 
         @Test
@@ -193,7 +194,123 @@ class ThreeByThreeOPTest {
             boolean result = fieldOperator.isWin();
 
             //Then
-            assertEquals(true, result);
+
+            assertTrue(result);
+        }
+    }
+
+    @Nested
+    @DisplayName("Test cross variants with X")
+    class TestXCrossVariants {
+        @Test
+        void testXCross1() {
+            //Given
+            fieldOperator.selectField(1, "X");
+            fieldOperator.selectField(5, "X");
+            fieldOperator.selectField(9, "X");
+            fieldOperator.checkWinner();
+
+            //When
+            boolean result = fieldOperator.isWin();
+
+            //Then
+            assertTrue(result);
+        }
+
+        @Test
+        void testXCross2() {
+            //Given
+            fieldOperator.selectField(3, "X");
+            fieldOperator.selectField(5, "X");
+            fieldOperator.selectField(7, "X");
+            fieldOperator.checkWinner();
+
+            //When
+            boolean result = fieldOperator.isWin();
+
+            //Then
+            assertTrue(result);
+        }
+    }
+
+    @Nested
+    @DisplayName("Test cross variants with O")
+    class TestOCrossVariants {
+        @Test
+        void testOCross1() {
+            //Given
+            fieldOperator.selectField(1, "O");
+            fieldOperator.selectField(5, "O");
+            fieldOperator.selectField(9, "O");
+            fieldOperator.checkWinner();
+
+            //When
+            boolean result = fieldOperator.isWin();
+
+            //Then
+
+            assertTrue(result);
+        }
+
+        @Test
+        void testOCross2() {
+            //Given
+            fieldOperator.selectField(3, "O");
+            fieldOperator.selectField(5, "O");
+            fieldOperator.selectField(7, "O");
+            fieldOperator.checkWinner();
+
+            //When
+            boolean result = fieldOperator.isWin();
+
+            //Then
+            assertTrue(result);
+        }
+    }
+
+    @Nested
+    @DisplayName("Testing draw variant")
+    class TestDraw {
+        @Test
+        void testDraw() {
+            //Given
+            fieldOperator.selectField(1, "O");
+            fieldOperator.selectField(2, "X");
+            fieldOperator.selectField(3, "O");
+            fieldOperator.selectField(4, "O");
+            fieldOperator.selectField(5, "X");
+            fieldOperator.selectField(6, "O");
+            fieldOperator.selectField(7, "X");
+            fieldOperator.selectField(8, "O");
+            fieldOperator.selectField(9, "X");
+            fieldOperator.checkWinner();
+
+            //When
+            boolean result = fieldOperator.isDraw();
+
+            //Then
+            assertTrue(result);
+        }
+    }
+
+    @Nested
+    @DisplayName("Testing Occupied Field Exception")
+    class OccupiedFieldException {
+        @Test
+        void testOccupiedFieldException() {
+            //Given
+            boolean error = false;
+            fieldOperator.selectField(1, "X");
+
+            //When
+            try {
+                fieldOperator.selectField(1, "X");
+            } catch (com.kodilla.tictactoe.small.OccupiedFieldException e){
+                error = true;
+            }
+
+            //Then
+            assertTrue(error);
         }
     }
 }

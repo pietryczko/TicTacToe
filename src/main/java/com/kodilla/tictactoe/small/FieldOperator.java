@@ -59,20 +59,7 @@ public class FieldOperator {
             System.out.println(showGameBoard());
             System.out.println(board.getField(winFigure) + " won!");
         }
-
-        if (!board.getField(1).isBlank() &&
-                !board.getField(2).isBlank() &&
-                !board.getField(3).isBlank() &&
-                !board.getField(4).isBlank() &&
-                !board.getField(5).isBlank() &&
-                !board.getField(6).isBlank() &&
-                !board.getField(7).isBlank() &&
-                !board.getField(8).isBlank() &&
-                !board.getField(9).isBlank() &&
-                !win) {
-            System.out.println("DRAW!");
-            System.exit(0);
-        }
+        isDraw();
     }
 
     void fieldSelector(int fieldNumber, String figure) {
@@ -102,5 +89,21 @@ public class FieldOperator {
 
     boolean isWin() {
         return win;
+    }
+
+    boolean isDraw() {
+        if (!board.getField(1).isBlank() &&
+                !board.getField(2).isBlank() &&
+                !board.getField(3).isBlank() &&
+                !board.getField(4).isBlank() &&
+                !board.getField(5).isBlank() &&
+                !board.getField(6).isBlank() &&
+                !board.getField(7).isBlank() &&
+                !board.getField(8).isBlank() &&
+                !board.getField(9).isBlank() &&
+                !win) {
+            System.out.println("DRAW!");
+        }
+        return true;
     }
 }

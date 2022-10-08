@@ -5,10 +5,10 @@ import com.kodilla.tictactoe.Figure;
 import java.util.Scanner;
 
 public class LargeBoardOperator {
-    private LargeWinChecker winChecker = new LargeWinChecker();
-    private Figure figure = new Figure();
-    private Scanner scanner = new Scanner(System.in);
-    private String[][] board = new String[10][10];
+    private final LargeWinChecker winChecker = new LargeWinChecker();
+    private final Figure figure = new Figure();
+    private final Scanner scanner = new Scanner(System.in);
+    private final String[][] board = new String[10][10];
     private boolean win = false;
 
 
