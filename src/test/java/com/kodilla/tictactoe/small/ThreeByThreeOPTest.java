@@ -4,6 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ThreeByThreeOPTest {
@@ -295,22 +296,15 @@ class ThreeByThreeOPTest {
 
     @Nested
     @DisplayName("Testing Occupied Field Exception")
-    class OccupiedFieldException {
+    class SuffixTest {
         @Test
+                ()
         void testOccupiedFieldException() {
             //Given
-            boolean error = false;
             fieldOperator.selectField(1, "X");
 
-            //When
-            try {
-                fieldOperator.selectField(1, "X");
-            } catch (com.kodilla.tictactoe.small.OccupiedFieldException e){
-                error = true;
-            }
-
             //Then
-            assertTrue(error);
+            assertThrows(OccupiedFieldException.class, () -> fieldOperator.selectField(1, "X"));
         }
     }
 }

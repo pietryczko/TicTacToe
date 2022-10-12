@@ -12,6 +12,7 @@ public class LargeWinChecker {
         this.column = column;
         this.figure = figure;
         this.board = board;
+        win = false;
         checkVertical();
         if (!win) {
             checkHorizontal();
@@ -113,8 +114,7 @@ public class LargeWinChecker {
         }
 
         if (xy1 == 4 || xy2 == 4) {
-            System.out.println("WIN");
-            System.exit(0);
+            win = true;
         }
     }
 }

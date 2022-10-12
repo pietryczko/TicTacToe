@@ -11,7 +11,7 @@ public class GameProcessor {
     private final LargeBoardOperator large = new LargeBoardOperator();
     private final ThreeByThreeOP small = new ThreeByThreeOP();
 
-    void startGame() {
+    boolean startGame() {
         System.out.println("Press 1 to play small Tic Tac Toe\nPress 2 to play large Tic Tac Toe");
         int gameMode = scanner.nextInt();
 
@@ -22,11 +22,6 @@ public class GameProcessor {
         }
 
         System.out.println("Do you want play again? y/n");
-        if (scanner.next().equals("y")) {
-            startGame();
-        } else {
-            System.exit(0);
-        }
-
+        return scanner.next().equals("y");
     }
 }

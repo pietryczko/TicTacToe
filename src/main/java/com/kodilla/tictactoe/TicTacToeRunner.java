@@ -8,6 +8,8 @@ public class TicTacToeRunner {
 
     public static void main(String[] args) {
         GameProcessor gameProcessor = new GameProcessor();
-        gameProcessor.startGame();
+        while (gameProcessor.startGame()) {
+            gameProcessor = new GameProcessor();
+        }
     }
 }
